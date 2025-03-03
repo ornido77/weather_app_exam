@@ -33,6 +33,7 @@ class WeatherPage extends StatelessWidget {
               _buildTextField(),
               const SizedBox(height: 20),
               _buildButtonRow(context),
+              const SizedBox(height: 10),
             ],
           ),
         ),
