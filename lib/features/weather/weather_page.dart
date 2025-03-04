@@ -253,6 +253,7 @@ class _WeatherPageState extends State<WeatherPage> {
       children: [
         Text(logo, style: const TextStyle(fontSize: 34, color: Colors.white70)),
         Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               label,
