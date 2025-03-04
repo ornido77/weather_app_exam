@@ -1,16 +1,27 @@
-# weather_app_exam
+Traxion Technical Exam - Consuming Web Services
 
-A new Flutter project.
+This Flutter application consumes the OpenWeatherMap API to fetch current weather data in both JSON and XML formats. 
+The app allows users to search for a city and view real-time weather details with a user-friendly interface.
 
-## Getting Started
+Features
+Fetch weather data in JSON and XML formats
+Display temperature, humidity, weather condition, and wind speed
+Uses flutter_bloc for state management
+Lottie animations for enhanced UI experience
+Supports environment variables with flutter_dotenv
 
-This project is a starting point for a Flutter application.
+Installation
+Clone the repository:
+git clone https://github.com/ornido77/weather_app_exam.git
+cd weather_app_exam
 
-A few resources to get you started if this is your first Flutter project:
+Create a .env file in the root directory and add your OpenWeatherMap API key:
+API_KEY=your_openweathermap_api_key
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Install dependencies:
+flutter pub get
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Run the app:
+
+Screenshots
+![image](https://github.com/user-attachments/assets/abf02fe8-ba44-4459-9e7b-45a24d657332)
