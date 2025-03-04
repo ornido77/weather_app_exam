@@ -7,10 +7,21 @@ import 'package:weather_app_exam/features/weather/bloc/weather_bloc.dart';
 import 'package:weather_app_exam/utils/utils.dart';
 import 'package:xml/xml.dart' as xml;
 
-class WeatherPage extends StatelessWidget {
+class WeatherPage extends StatefulWidget {
+  const WeatherPage({super.key});
+
+  @override
+  State<WeatherPage> createState() => _WeatherPageState();
+}
+
+class _WeatherPageState extends State<WeatherPage> {
   final TextEditingController cityController = TextEditingController();
 
-  WeatherPage({super.key});
+  @override
+  void dispose() {
+    cityController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +44,7 @@ class WeatherPage extends StatelessWidget {
               _buildTextField(),
               const SizedBox(height: 20),
               _buildButtonRow(context),
-              const SizedBox(height: 10),
+              const SizedBox(height: 40),
             ],
           ),
         ),
@@ -142,7 +153,7 @@ class WeatherPage extends StatelessWidget {
                           color: Colors.white60,
                         ),
                       ),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: 5),
                       Text(
                         "${state.weather.temperature}°C",
                         style: const TextStyle(
@@ -151,11 +162,22 @@ class WeatherPage extends StatelessWidget {
                           color: Colors.white,
                         ),
                       ),
-                      const SizedBox(height: 10),
+
+                      const SizedBox(height: 5),
                       Text(
                         state.weather.description,
                         style: const TextStyle(
                           fontSize: 18,
+                          color: Colors.white70,
+                        ),
+                      ),
+                      const SizedBox(height: 5),
+                      Text(
+                        getWeatherPhrase(state.weather.description),
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
                           color: Colors.white70,
                         ),
                       ),
@@ -167,16 +189,6 @@ class WeatherPage extends StatelessWidget {
                           const Divider(),
                           _buildTemp('🧊', state.weather.tempMin, 'Temp Min'),
                         ],
-                      ),
-                      const SizedBox(height: 15),
-                      Text(
-                        getWeatherPhrase(state.weather.description),
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white70,
-                        ),
                       ),
                     ],
                   ),
