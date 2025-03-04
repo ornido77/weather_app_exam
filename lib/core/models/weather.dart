@@ -6,6 +6,8 @@ class Weather {
   final double temperature;
   final double tempMin;
   final double tempMax;
+  final double humidity;
+  final double windSpeed;
   final String description;
   final String animation;
   final String rawData;
@@ -17,6 +19,8 @@ class Weather {
     required this.temperature,
     required this.tempMin,
     required this.tempMax,
+    required this.humidity,
+    required this.windSpeed,
     required this.description,
     required this.animation,
     required this.rawData,
@@ -31,6 +35,8 @@ class Weather {
       temperature: json['main']['temp'].toDouble(),
       tempMin: json['main']['temp_min'].toDouble(),
       tempMax: json['main']['temp_max'].toDouble(),
+      humidity: json['main']['humidity'].toDouble(),
+      windSpeed: json['wind']['speed'].toDouble(),
       description: json['weather'][0]['description'],
       animation: _mapConditionToLottie(condition),
       rawData: rawData,
@@ -60,6 +66,12 @@ class Weather {
       document.findAllElements('temperature').first.getAttribute('max') ??
           "0.0",
     );
+    final humidity = double.parse(
+      document.findAllElements('humidity').first.getAttribute('value') ?? "0.0",
+    );
+    final windSpeed = double.parse(
+      document.findAllElements('speed').first.getAttribute('value') ?? "0.0",
+    );
 
     final description =
         document.findAllElements('weather').first.getAttribute('value') ??
@@ -74,6 +86,8 @@ class Weather {
       temperature: temp,
       tempMin: tempMin,
       tempMax: tempMax,
+      humidity: humidity,
+      windSpeed: windSpeed,
       description: description,
       animation: animation,
       rawData: rawData,

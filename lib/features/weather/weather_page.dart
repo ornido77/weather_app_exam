@@ -44,7 +44,7 @@ class _WeatherPageState extends State<WeatherPage> {
               _buildTextField(),
               const SizedBox(height: 20),
               _buildButtonRow(context),
-              const SizedBox(height: 40),
+              const SizedBox(height: 30),
             ],
           ),
         ),
@@ -129,11 +129,10 @@ class _WeatherPageState extends State<WeatherPage> {
                         ],
                       ),
 
-                      SizedBox(height: 15),
-
                       if (state.weather.animation.isNotEmpty)
                         Lottie.asset(
                           state.weather.animation,
+                          fit: BoxFit.cover,
                           width: 200,
                           height: 200,
                         ),
@@ -157,7 +156,7 @@ class _WeatherPageState extends State<WeatherPage> {
                       Text(
                         "${state.weather.temperature}°C",
                         style: const TextStyle(
-                          fontSize: 38,
+                          fontSize: 30,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
@@ -172,23 +171,40 @@ class _WeatherPageState extends State<WeatherPage> {
                         ),
                       ),
                       const SizedBox(height: 5),
+
+                      const SizedBox(height: 5),
+                      _buildDetailRow(
+                        _buildIconRow(
+                          '🔥',
+                          "${state.weather.tempMax}°C",
+                          'Temp Max',
+                        ),
+                        _buildIconRow(
+                          '🧊',
+                          "${state.weather.tempMin}°C",
+                          'Temp Min',
+                        ),
+                      ),
+                      _buildDetailRow(
+                        _buildIconRow(
+                          '💧',
+                          "${state.weather.humidity}%",
+                          'Humidity',
+                        ),
+                        _buildIconRow(
+                          '💨',
+                          "${(state.weather.windSpeed * 3.6).toStringAsFixed(2)}°km/h",
+                          'Wind Speed',
+                        ),
+                      ),
                       Text(
                         getWeatherPhrase(state.weather.description),
                         textAlign: TextAlign.center,
                         style: const TextStyle(
-                          fontSize: 18,
+                          fontSize: 14,
                           fontWeight: FontWeight.w500,
                           color: Colors.white70,
                         ),
-                      ),
-                      const SizedBox(height: 5),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          _buildTemp('🔥', state.weather.tempMax, 'Temp Max'),
-                          const Divider(),
-                          _buildTemp('🧊', state.weather.tempMin, 'Temp Min'),
-                        ],
                       ),
                     ],
                   ),
@@ -222,7 +238,17 @@ class _WeatherPageState extends State<WeatherPage> {
     );
   }
 
-  Row _buildTemp(String logo, double temp, String label) {
+  Row _buildDetailRow(Widget child1, Widget child2) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Expanded(flex: 1, child: child1),
+        Expanded(flex: 1, child: child2),
+      ],
+    );
+  }
+
+  Row _buildIconRow(String logo, String value, String label) {
     return Row(
       children: [
         Text(logo, style: const TextStyle(fontSize: 34, color: Colors.white70)),
@@ -233,7 +259,7 @@ class _WeatherPageState extends State<WeatherPage> {
               style: const TextStyle(fontSize: 14, color: Colors.white70),
             ),
             Text(
-              "$temp°C",
+              value,
               style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w800,
