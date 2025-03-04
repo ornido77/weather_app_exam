@@ -12,7 +12,7 @@ Supports environment variables with flutter_dotenv
 
 Installation
 Clone the repository:
-git clone https://github.com/yourusername/weather_app_exam.git
+git clone https://github.com/ornido77/weather_app_exam.git
 cd weather_app_exam
 
 Create a .env file in the root directory and add your OpenWeatherMap API key:
