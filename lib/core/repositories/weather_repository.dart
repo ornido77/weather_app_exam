@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:weather_app_exam/core/models/weather.dart';
 
 class WeatherRepository {
-  final String apiKey = "16ee6acc46d16b281190bc75f634d315";
+  final String apiKey = dotenv.env['API_KEY'] ?? '';
   final String baseUrl = "https://api.openweathermap.org/data/2.5/weather";
 
   Future<Weather> fetchWeather(String city, {bool isXml = false}) async {
